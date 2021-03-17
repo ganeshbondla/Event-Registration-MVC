@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SchoolEvent.Models.Transections>
+
+@{
+    ViewBag.Title = "Transections";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Payment Transections</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransectionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransectionStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransectionDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransectionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransectionStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransectionDate)
+        </td>
+        <td>
+            @Html.ActionLink("Transection Details", "TxnDetails", new { id=item.TransectionId})
+        </td>
+    </tr>
+}
+
+</table>

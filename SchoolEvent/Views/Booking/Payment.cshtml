@@ -1,0 +1,90 @@
+﻿@model SchoolEvent.Models.TxnOrder
+@{
+    ViewBag.Title = "Booking Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+
+<div class="alert  alert-success">
+    Your Registered!, Please Pay Amount to confirm your booking <button type="button" id="rzp-button1">Pay @Model.amount</button>
+</div>
+
+<hr />
+<h3>Booking Details</h3>
+
+<table class="table">
+
+    <tbody>
+        <tr>
+            <th scope="row">Booking Id</th>
+            <td>#@Model.BookingId</td>
+        </tr>
+        <tr>
+            <th scope="row">Name</th>
+            <td>@Model.name</td>
+        </tr>
+        <tr>
+            <th scope="row">Email</th>
+            <td>@Model.email</td>
+        </tr>
+        <tr>
+            <th scope="row">Event Name</th>
+            <td>@Model.EventName</td>
+        </tr>
+        <tr>
+            <th scope="row">Event Amount</th>
+            <td>@Model.amount</td>
+        </tr>
+    </tbody>
+</table>
+<hr />
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "@Html.DisplayFor(model => model.razorpayKey)",
+    "amount": "@Html.DisplayFor(model => model.amount)",
+    "currency": "@Html.DisplayFor(model => model.currency)",
+    "name": "@Html.DisplayFor(model => model.name)",
+    "description": "@Html.DisplayFor(model => model.description)",
+    "image": "https://www.samsung.com/global/galaxy/samsung-pay/images/00_samsung_pay_logo.svg",
+    "order_id": "@Html.DisplayFor(model => model.orderId)",
+    "handler": function (response){
+        // alert('success');
+         document.getElementById('rzp_paymentid').value = response.razorpay_payment_id;
+         document.getElementById('rzp_orderid').value = response.razorpay_order_id;
+        document.getElementById('confirmPayment').click();
+    },
+    "prefill": {
+        "name": "@Html.DisplayFor(model => model.name)",
+        "email": "@Html.DisplayFor(model => model.email)",
+        "contact": "@Html.DisplayFor(model => model.contactNumber)"
+    },
+    "notes": {
+        "address": "@Html.DisplayFor(model => model.address)"
+    },
+    "theme": {
+        "color": "#F37254"
+    }
+};
+
+var rzp1 = new Razorpay(options);
+
+    document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+    }
+
+</script>
+
+<form id="paymentresponse" action="/Booking/CompleteBooking" method="post">
+
+    <input type="hidden" name="rzp_paymentid" id="rzp_paymentid" />
+    <input type="hidden" name="rzp_orderid" id="rzp_orderid" />
+    <input type="hidden" name="event_id" id="event_id" value="@Model.EventId" />
+    <input type="hidden" name="bookUser_id" id="bookUser_id" value="@Model.BookingId" />
+
+    <input type="submit" name="submit" id="confirmPayment" style="display:none"/>
+
+</form>
+
+

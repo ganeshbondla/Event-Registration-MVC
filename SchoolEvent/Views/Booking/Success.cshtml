@@ -1,0 +1,55 @@
+﻿@model SchoolEvent.ViewModels.TransectionViewModel
+@{
+    ViewBag.Title = "Booking Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ 
+    var txnStatus = @Model.transections.TransectionStatus;
+}
+
+<br />
+<div class="mt-2 alert alert-success">
+    Event Booking Success! , Your Booking Id : <b>@Model.userBooking.Uid</b>!
+</div>
+<hr />
+<h3>Booking Details</h3>
+
+<table class="table">
+
+    <tbody>
+        <tr>
+            <th scope="row">Booking Id</th>
+            <td>#@Model.userBooking.Uid</td>
+        </tr>
+        <tr>
+            <th scope="row">Name</th>
+            <td>@Model.userBooking.Name</td>
+        </tr>
+        <tr>
+            <th scope="row">Email</th>
+            <td>@Model.userBooking.Email</td>
+        </tr>
+        <tr>
+            <th scope="row">Event Name</th>
+            <td>@Model.events.EventName</td>
+        </tr>
+        <tr>
+            <th scope="row">Event Amount</th>
+            <td>@Model.events.EventAmount</td>
+        </tr>
+        <tr>
+            <th scope="row">Transection Id</th>
+            <td>@Model.transections.TransectionId</td>
+        </tr>
+        <tr>
+            <th scope="row">Transection Date</th>
+            <td>@Model.transections.TransectionDate</td>
+        </tr>
+        <tr>
+            <th scope="row">Transection Status</th>
+            <td>@Model.transections.TransectionStatus</td>
+        </tr>
+    </tbody>
+</table>
+

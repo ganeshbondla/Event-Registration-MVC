@@ -1,0 +1,63 @@
+﻿@model SchoolEvent.ViewModels.TransectionViewModel
+@{
+    ViewBag.Title = "TxnDetails";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>TxnDetails</h2>
+<hr />
+<table class="table-bordered">
+    <tbody>
+        <tr>
+            <th>Transection ID</th>
+            <td>@Model.transections.TransectionId</td>
+        </tr>
+        <tr>
+            <th>Transection Status</th>
+            <td>@Model.transections.TransectionStatus</td>
+        </tr>
+        <tr>
+            <th>Transection Date</th>
+            <td>@Model.transections.TransectionDate</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<h3>User Details</h3>
+<table class="table-bordered">
+    <tbody>
+        <tr>
+            <th>User Name</th>
+            <td>@Model.userBooking.Name</td>
+        </tr>
+        <tr>
+            <th>User Email</th>
+            <td>@Model.userBooking.Email</td>
+        </tr>
+        <tr>
+            <th>User Mobile</th>
+            <td>@Model.userBooking.Mobile</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<h3>Event Details</h3>
+<table class="table-bordered">
+    <tbody>
+        <tr>
+            <th>Event Name</th>
+            <td>@Model.events.EventName</td>
+        </tr>
+        <tr>
+            <th>Event Date</th>
+            <td>@Model.events.EventDate</td>
+        </tr>
+        <tr>
+            <th>Event Price</th>
+            <td>@Model.events.EventAmount</td>
+        </tr>
+    </tbody>
+</table>
+

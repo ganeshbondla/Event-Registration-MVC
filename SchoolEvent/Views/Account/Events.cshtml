@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SchoolEvent.Models.Events>
+
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Events</h2>
+
+<p>
+    @Html.ActionLink("Create New Event", "CreateEvent", new { @class= "btn btn-primary" })
+</p>
+<hr />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit Event", "EventEdit", new { id=item.Id }) |
+            @Html.ActionLink("Delete Event", "EventDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
