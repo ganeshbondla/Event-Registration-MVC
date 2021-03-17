@@ -67,8 +67,8 @@ namespace SchoolEvent.Controllers
                     }
                     else
                     {
-                        // var email = sendEmailAsync(bookingDetails.Uid);
-                        // var EmailResponse = email.Result;
+                         var email = sendEmailAsync(bookingDetails.Uid);
+                         var EmailResponse = email.Result;
 
                         return RedirectToAction("Payment/" + bookingDetails.Uid);
                     }
@@ -94,9 +94,9 @@ namespace SchoolEvent.Controllers
                 Uid = getDetails.Uid
             };
 
-            var apiKey = "SG.RGQN5aMFRW-vF-wrK3ARpg.3BNQaUUvLSOECv4vSJlcrvoRwSpSTvD54-GOTagbqgQ";
+            var apiKey = "-- SendGrid API KEY --";
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("ganeshb.mal@gmail.com", "Event Booking");
+            var from = new EmailAddress("from-email", "Event Booking");
             var subject = "Event Registered Success #"+emailDetails.Uid;
             var to = new EmailAddress(emailDetails.Email, emailDetails.Name);
             var plainTextContent = "Event Registered Success #" + emailDetails.Uid;
@@ -119,7 +119,7 @@ namespace SchoolEvent.Controllers
                 Random randomObj = new Random();
                 string transactionId = randomObj.Next(10000000, 100000000).ToString();
 
-                Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_QwXu8ivKqzL3eq", "OjZilT6z8N3a5NKxf6DPqQzM");
+                Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("--Razorpay Key Id--", "--Razorpay Secret key--");
                 Dictionary<string, object> options = new Dictionary<string, object>();
                 options.Add("amount", amount * 100);  // Amount will in paise
                 options.Add("receipt", transactionId);
@@ -132,7 +132,7 @@ namespace SchoolEvent.Controllers
                 TxnOrder txnOrder = new TxnOrder()
                 {
                     orderId = orderResponse.Attributes["id"],
-                    razorpayKey = "rzp_test_QwXu8ivKqzL3eq",
+                    razorpayKey = "--Razorpay Key Id--",
                     amount = amount,
                     currency = "INR",
                     name = BookDetails.Name,
@@ -160,7 +160,7 @@ namespace SchoolEvent.Controllers
             string EventId = event_id;
             string BookUid = bookUser_id;
 
-            Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_QwXu8ivKqzL3eq", "OjZilT6z8N3a5NKxf6DPqQzM");
+            Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("--Razorpay Key Id--", "--Razorpay Secret key--");
 
             Razorpay.Api.Payment payment = client.Payment.Fetch(paymentId);
 
