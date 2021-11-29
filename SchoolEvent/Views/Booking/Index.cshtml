@@ -21,21 +21,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventAmount)
-        </td>
-        <td>
-            @Html.ActionLink("Attend Event", "Register", new { id=item.EventId }, new { @class ="btn btn-primary" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventAmount)
+            </td>
+            <td>
+                @Html.ActionLink("Attend Event", "Register", new { id = item.EventId }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
 
 </table>

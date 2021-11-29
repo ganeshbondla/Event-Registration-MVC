@@ -21,5 +21,7 @@ namespace SchoolEvent.Models
 
         [Required]
         public string EventId { get; set; }
+
+        public bool EventExpired { get; set; }
     }
 }
